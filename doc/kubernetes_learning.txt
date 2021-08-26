@@ -1,0 +1,136 @@
+-- registry
+
+docker inspect -f \
+'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
+22092ee4b45f
+
+172.17.0.2
+
+
+
+-- minikube
+
+minikube start
+
+docker inspect -f \
+'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
+e7a4816660fa
+
+192.168.49.2
+
+
+minikube dashboard
+
+kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.4
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+
+
+export NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template='{{(index .spec.ports 0).nodePort}}')
+echo NODE_PORT=$NODE_PORT
+
+
+
+
+-- запустить ELASTIC
+C:\Users\yuriy\work\apps\elasticsearch-7.13.2\bin
+
+cd ~/work/apps/elasticsearch-7.13.2/bin
+
+./elasticsearch.bat
+
+-- запустить KIBANA
+
+C:\Users\yuriy\work\apps\kibana-7.13.2\bin
+
+cd ~/work/apps/kibana-7.13.2/bin
+
+./kibana.bat
+
+http://localhost:5601/
+
+-- установить fluentd в minikube
+
+> kubectl create -f logging-namespace.yaml
+> kubectl create -f fluentd-service-account.yaml
+> kubectl create -f fluentd-configmap.yaml
+> kubectl create -f fluentd-daemonset.yaml
+
+
+
+-- мой репозиторий для тренировки на Docker Hub
+
+https://hub.docker.com
+
+-- директория проекта
+C:\Users\yuriy\work\training\spring-docker-producer
+
+cd ~/work/training/spring-docker-producer
+cd ~/work/training/spring-docker-consumer
+
+-- базовое имя образа
+yuriyweiss/spring-docker-producer
+yuriyweiss/spring-docker-consumer
+
+-- собрать образ
+> docker build -t yuriyweiss/spring-docker-producer:0.0.5 .
+> docker build -t yuriyweiss/spring-docker-consumer:0.0.5 .
+
+-- отправить образ на docker hub
+> docker push yuriyweiss/spring-docker-producer:0.0.5
+> docker push yuriyweiss/spring-docker-consumer:0.0.5
+
+-- проверить образ локально
+> docker run --name spring-docker-producer -d -p 8080:8080 -t yuriyweiss/spring-docker-producer:0.0.5
+
+
+-- установка в minikube
+> kubectl apply -f ./spring-docker-producer.yml
+> kubectl apply -f ./spring-docker-consumer.yml
+
+
+-- NodePort
+> kubectl expose deployment spring-docker-producer --type=NodePort --port=8080
+-- открыть порт для запросов http://localhost:7080/hello/ngjnfjd
+> kubectl port-forward service/spring-docker-producer 7080:8080
+
+-- LoadBalancer
+> kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8080
+-- открыть туннель для запросов http://localhost:8080/hello/ngjnfjd
+> minikube tunnel
+-- получить IP
+> kubectl get services spring-docker-producer
+
+
+
+-- запуск сервера SpringBootCloudConfig
+
+-- директория проекта
+C:\Users\yuriy\work\training\spring-cloud-config-server
+
+-- запуск из Idea
+1. Открыть проект в Idea;
+2. Запустить через закладку Maven. Папка Plugins -> spring-boot -> spring-boot:run
+3. Остановка через красный квадрат в консоли управления.
+
+-- запуск из GitBash
+> cd ~/work/training/spring-cloud-config-server
+
+> mvn spring-boot:run -Dspring.active.profile=native
+
+-- проверка загрузки конфигурации
+http://192.168.0.102:8888/spring-docker-producer/dev
+
+
+
+-- запуск локальной Кафки
+
+cd ~/work/apps/kafka_2.12-2.5.0
+-- запуск zookeeper
+bin/windows/zookeeper-server-start.bat config/zookeeper.properties
+-- запуск Kafka
+bin/windows/kafka-server-start.bat config/server.properties
+
+создать топик spring.docker.producer.out
+10 партиций
+retention.ms = 864000000 (10 суток)
