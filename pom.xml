@@ -13,7 +13,7 @@
 
     <groupId>ru.yuriyweiss.training.kubernetes</groupId>
     <artifactId>kubernetes-training-root</artifactId>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.0.8-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -39,5 +39,15 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+    <build>
+		<plugins>
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.8.1</version>
+            </plugin>
+        </plugins>
+    </build>
     
 </project>

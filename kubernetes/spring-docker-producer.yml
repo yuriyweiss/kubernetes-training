@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: spring-docker-producer
-          image: yuriyweiss/spring-docker-producer:0.0.7
+          image: yuriyweiss/spring-docker-producer:{{CURRENT_VERSION}}
           imagePullPolicy: Always
           env:
             - name: TZ

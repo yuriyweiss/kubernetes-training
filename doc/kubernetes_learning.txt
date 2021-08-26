@@ -63,30 +63,22 @@ http://localhost:5601/
 https://hub.docker.com
 
 -- директория проекта
-C:\Users\yuriy\work\training\spring-docker-producer
+C:\Users\yuriy\work\personal-projects\kubernetes-training
 
-cd ~/work/training/spring-docker-producer
-cd ~/work/training/spring-docker-consumer
+cd ~/work/personal-projects/kubernetes-training
 
 -- базовое имя образа
 yuriyweiss/spring-docker-producer
 yuriyweiss/spring-docker-consumer
 
--- собрать образ
-> docker build -t yuriyweiss/spring-docker-producer:0.0.5 .
-> docker build -t yuriyweiss/spring-docker-consumer:0.0.5 .
-
--- отправить образ на docker hub
-> docker push yuriyweiss/spring-docker-producer:0.0.5
-> docker push yuriyweiss/spring-docker-consumer:0.0.5
-
--- проверить образ локально
-> docker run --name spring-docker-producer -d -p 8080:8080 -t yuriyweiss/spring-docker-producer:0.0.5
+-- собрать образы и отправить на DockerHub
+> cd ~/work/personal-projects/kubernetes-training/bin
+> ./buildImages.sh 0.0.8
 
 
 -- установка в minikube
-> kubectl apply -f ./spring-docker-producer.yml
-> kubectl apply -f ./spring-docker-consumer.yml
+> cd ~/work/personal-projects/kubernetes-training/bin
+> ./deployImages.sh 0.0.8
 
 
 -- NodePort
@@ -106,17 +98,17 @@ yuriyweiss/spring-docker-consumer
 -- запуск сервера SpringBootCloudConfig
 
 -- директория проекта
-C:\Users\yuriy\work\training\spring-cloud-config-server
+C:\Users\yuriy\work\personal-projects\kubernetes-training\spring-cloud-config-server
 
 -- запуск из Idea
 1. Открыть проект в Idea;
-2. Запустить через закладку Maven. Папка Plugins -> spring-boot -> spring-boot:run
+2. В run-конфигурации прописать параметр -Dspring.profiles.active=native
 3. Остановка через красный квадрат в консоли управления.
 
 -- запуск из GitBash
-> cd ~/work/training/spring-cloud-config-server
+> cd ~/work/personal-projects/kubernetes-training/spring-cloud-config-server/target
 
-> mvn spring-boot:run -Dspring.active.profile=native
+> java -Dspring.profiles.active=native -jar spring-cloud-config-server-0.0.8-SNAPSHOT.jar
 
 -- проверка загрузки конфигурации
 http://192.168.0.102:8888/spring-docker-producer/dev
