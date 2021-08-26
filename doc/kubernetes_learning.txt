@@ -114,6 +114,11 @@ C:\Users\yuriy\work\personal-projects\kubernetes-training\spring-cloud-config-se
 http://192.168.0.102:8888/spring-docker-producer/dev
 
 
+-- обновление версий всего проекта
+Запустить Maven плагин versions - versions:set
+передать ему новую версию проекта, например: 0.0.8-SNAPSHOT
+
+
 
 -- запуск локальной Кафки
 
