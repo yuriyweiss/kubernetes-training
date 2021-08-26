@@ -1,4 +1,4 @@
-package ru.yuriyweiss.training.config.server;
+package ru.yuriyweiss.training.kubernetes.config.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +11,7 @@ import java.lang.management.ManagementFactory;
 public class SpringCloudConfigServerApplication {
 
     public static void main( String[] args ) {
-        System.out.println( "------------ PID: " + ManagementFactory.getRuntimeMXBean().getName() );
+        System.out.println( "------------ PID: " + ManagementFactory.getRuntimeMXBean().getName() ); // NOSONAR
         SpringApplication.run( SpringCloudConfigServerApplication.class, args );
     }
 }

@@ -1,4 +1,4 @@
-package ru.yuriyweiss.training.spring.docker.producer;
+package ru.yuriyweiss.training.kubernetes.producer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

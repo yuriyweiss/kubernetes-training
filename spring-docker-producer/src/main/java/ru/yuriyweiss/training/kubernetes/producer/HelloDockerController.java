@@ -1,4 +1,4 @@
-package ru.yuriyweiss.training.spring.docker.producer;
+package ru.yuriyweiss.training.kubernetes.producer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

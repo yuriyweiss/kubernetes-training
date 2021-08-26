@@ -1,4 +1,4 @@
-package ru.yuriyweiss.training.spring.docker.producer;
+package ru.yuriyweiss.training.kubernetes.producer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
