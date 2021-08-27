@@ -13,7 +13,7 @@
 
     <groupId>ru.yuriyweiss.training.kubernetes</groupId>
     <artifactId>kubernetes-training-root</artifactId>
-    <version>0.0.8-SNAPSHOT</version>
+    <version>0.0.9-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>

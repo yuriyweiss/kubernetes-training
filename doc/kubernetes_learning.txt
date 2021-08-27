@@ -71,14 +71,7 @@ cd ~/work/personal-projects/kubernetes-training
 yuriyweiss/spring-docker-producer
 yuriyweiss/spring-docker-consumer
 
--- собрать образы и отправить на DockerHub
-> cd ~/work/personal-projects/kubernetes-training/bin
-> ./buildImages.sh 0.0.8
 
-
--- установка в minikube
-> cd ~/work/personal-projects/kubernetes-training/bin
-> ./deployImages.sh 0.0.8
 
 
 -- NodePort
@@ -131,3 +124,6 @@ bin/windows/kafka-server-start.bat config/server.properties
 создать топик spring.docker.producer.out
 10 партиций
 retention.ms = 864000000 (10 суток)
+
+
+

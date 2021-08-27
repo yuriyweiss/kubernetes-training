@@ -6,7 +6,7 @@
 	<parent>
         <artifactId>kubernetes-training-root</artifactId>
         <groupId>ru.yuriyweiss.training.kubernetes</groupId>
-        <version>0.0.8-SNAPSHOT</version>
+        <version>0.0.9-SNAPSHOT</version>
     </parent>
 
 	<artifactId>spring-docker-consumer</artifactId>
