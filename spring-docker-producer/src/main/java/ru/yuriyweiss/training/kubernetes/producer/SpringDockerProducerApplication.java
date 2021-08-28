@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.TimeZone;
 
-@SpringBootApplication
+@SpringBootApplication( scanBasePackages = { "ru.yuriyweiss.training.kubernetes" } )
 @EnableKafka
 @EnableScheduling
 public class SpringDockerProducerApplication {

@@ -6,7 +6,7 @@
 	<parent>
         <artifactId>kubernetes-training-root</artifactId>
         <groupId>ru.yuriyweiss.training.kubernetes</groupId>
-        <version>0.0.9-SNAPSHOT</version>
+        <version>0.0.10-SNAPSHOT</version>
     </parent>
 
 	<artifactId>spring-docker-consumer</artifactId>
@@ -30,6 +30,11 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ru.yuriyweiss.training.kubernetes</groupId>
+			<artifactId>spring-docker-common</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 

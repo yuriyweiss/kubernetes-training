@@ -1,4 +1,4 @@
-package ru.yuriyweiss.training.spring.docker.consumer;
+package ru.yuriyweiss.training.kubernetes.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.TimeZone;
 
-@SpringBootApplication
+@SpringBootApplication( scanBasePackages = { "ru.yuriyweiss.training.kubernetes" } )
 @EnableKafka
 @EnableScheduling
 public class SpringDockerConsumerApplication {

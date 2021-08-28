@@ -13,7 +13,7 @@
 
     <groupId>ru.yuriyweiss.training.kubernetes</groupId>
     <artifactId>kubernetes-training-root</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.0.10-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -21,6 +21,7 @@
         <module>spring-docker-producer</module>
         <module>spring-docker-consumer</module>
         <module>spring-docker-loader</module>
+        <module>spring-docker-common</module>
     </modules>
 
     <properties>

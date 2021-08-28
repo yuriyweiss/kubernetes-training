@@ -6,10 +6,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Slf4j
-@SpringBootApplication
+@SpringBootApplication( scanBasePackages = { "ru.yuriyweiss.training.kubernetes" } )
+@EnableScheduling
 public class SpringDockerLoaderApplication {
 
     @Autowired
@@ -23,7 +25,12 @@ public class SpringDockerLoaderApplication {
     public CommandLineRunner commandLineRunner() {
         return args -> {
             log.info( "started" );
-            messagesLoader.run( Integer.parseInt( args[0] ) );
+            if ( args.length < 2 ) {
+                log.info( "Usage: <run messageLoader command> <messagesPerSecond> <producerUrl>" );
+                return;
+            }
+            // producerUrl: "http://localhost:8080/hello/"
+            messagesLoader.run( Integer.parseInt( args[0] ), args[1] );
         };
     }
 
