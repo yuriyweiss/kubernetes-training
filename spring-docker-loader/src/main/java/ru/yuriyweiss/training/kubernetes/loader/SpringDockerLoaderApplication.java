@@ -23,7 +23,7 @@ public class SpringDockerLoaderApplication {
     public CommandLineRunner commandLineRunner() {
         return args -> {
             log.info( "started" );
-            messagesLoader.run();
+            messagesLoader.run( Integer.parseInt( args[0] ) );
         };
     }
 

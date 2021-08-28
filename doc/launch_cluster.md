@@ -34,4 +34,9 @@
 - подождать запуск нод
 - kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8080
 - в отдельном командном окне
-  - minikube tunnel 
+  - minikube tunnel
+
+## 6. Запуск нагрузки
+
+- cd ~/work/personal-projects/kubernetes-training/spring-docker-loader/target
+- java -jar spring-docker-loader-0.0.9-SNAPSHOT.jar 100

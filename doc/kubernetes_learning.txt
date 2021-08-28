@@ -10,7 +10,16 @@ docker inspect -f \
 
 -- minikube
 
+minikube config set memory 6g
+
+minikube config view
+
+-- первый запуск
+minikube start --memory 6g
+-- дальнейшие запуски
 minikube start
+
+minikube addons enable metrics-server
 
 docker inspect -f \
 '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' \
