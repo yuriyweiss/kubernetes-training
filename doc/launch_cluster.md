@@ -39,6 +39,6 @@
 
 ## 6. Запуск нагрузки
 
-- на машине 192.168.0.101
+- на машине 192.168.0.102
 - cd ~/work/personal-projects/kubernetes-training/spring-docker-loader/target
-- java -jar spring-docker-loader-0.0.10-SNAPSHOT.jar 100 http://192.168.0.102:8080/hello/
+- java -jar spring-docker-loader-0.0.10-SNAPSHOT.jar 100 http://localhost:8080/hello/
