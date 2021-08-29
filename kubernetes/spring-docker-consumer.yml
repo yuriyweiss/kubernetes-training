@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: spring-docker-consumer
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: spring-docker-consumer
