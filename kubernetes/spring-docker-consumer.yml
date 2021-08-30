@@ -23,7 +23,7 @@ spec:
             requests:
               memory: "200Mi"
             limits:
-              memory: "300Mi"
+              memory: "350Mi"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       terminationGracePeriodSeconds: 0

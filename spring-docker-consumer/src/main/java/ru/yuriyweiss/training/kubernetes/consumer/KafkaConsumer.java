@@ -6,7 +6,7 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-import ru.yuriyweiss.training.kubernetes.common.PerformanceLogger;
+import ru.yuriyweiss.training.kubernetes.common.MetricsHolder;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,10 +17,10 @@ public class KafkaConsumer {
 
     private static final String TOPIC_NAME = "spring.docker.producer.out";
 
-    private final PerformanceLogger performanceLogger;
+    private final MetricsHolder metricsHolder;
 
-    public KafkaConsumer( PerformanceLogger performanceLogger ) {
-        this.performanceLogger = performanceLogger;
+    public KafkaConsumer( MetricsHolder metricsHolder ) {
+        this.metricsHolder = metricsHolder;
     }
 
     @KafkaListener( topics = TOPIC_NAME )
@@ -30,6 +30,6 @@ public class KafkaConsumer {
         String message = payload + " " + LocalDateTime.now().format( DateTimeFormatter.ISO_LOCAL_DATE_TIME ) +
                 " partition: " + partition + " offset: " + offset;
         log.trace( message );
-        performanceLogger.onMessage();
+        metricsHolder.onMessage();
     }
 }

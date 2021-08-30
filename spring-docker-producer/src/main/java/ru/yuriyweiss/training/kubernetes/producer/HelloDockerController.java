@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import ru.yuriyweiss.training.kubernetes.common.PerformanceLogger;
+import reactor.core.publisher.Mono;
+import ru.yuriyweiss.training.kubernetes.common.MetricsHolder;
 
 import java.time.LocalDateTime;
 
@@ -18,22 +19,22 @@ public class HelloDockerController {
     private static final String TOPIC_NAME = "spring.docker.producer.out";
 
     private final KafkaProducer kafkaProducer;
-    private final PerformanceLogger performanceLogger;
+    private final MetricsHolder metricsHolder;
 
     @Autowired
     public HelloDockerController(
             KafkaProducer kafkaProducer,
-            PerformanceLogger performanceLogger ) {
+            MetricsHolder metricsHolder ) {
         this.kafkaProducer = kafkaProducer;
-        this.performanceLogger = performanceLogger;
+        this.metricsHolder = metricsHolder;
     }
 
     @GetMapping( "/hello/{name}" )
-    public String hello( @PathVariable String name ) {
+    public Mono<String> hello( @PathVariable String name ) {
         log.trace( "incoming get request: " + name );
-        performanceLogger.onMessage();
         String message = "request: " + name + " " + LocalDateTime.now().format( ISO_LOCAL_DATE_TIME );
         kafkaProducer.send( TOPIC_NAME, message );
-        return "processed " + name;
+        metricsHolder.onMessage();
+        return Mono.just( "processed " + name );
     }
 }

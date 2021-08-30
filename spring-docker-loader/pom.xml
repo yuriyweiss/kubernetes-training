@@ -6,7 +6,7 @@
 	<parent>
         <artifactId>kubernetes-training-root</artifactId>
         <groupId>ru.yuriyweiss.training.kubernetes</groupId>
-        <version>0.0.10-SNAPSHOT</version>
+        <version>0.0.11-SNAPSHOT</version>
     </parent>
 
 	<artifactId>spring-docker-loader</artifactId>
@@ -15,17 +15,25 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>ru.yuriyweiss.training.kubernetes</groupId>
+			<artifactId>spring-docker-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>ru.yuriyweiss.training.kubernetes</groupId>
-			<artifactId>spring-docker-common</artifactId>
-			<version>${project.version}</version>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
 		</dependency>
 	</dependencies>
 

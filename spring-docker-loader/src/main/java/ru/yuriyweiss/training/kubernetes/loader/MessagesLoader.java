@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
-import ru.yuriyweiss.training.kubernetes.common.PerformanceLogger;
+import ru.yuriyweiss.training.kubernetes.common.MetricsHolder;
 
 import java.util.UUID;
 
@@ -13,14 +13,14 @@ import java.util.UUID;
 public class MessagesLoader {
 
     private final WebClient webClient;
-    private final PerformanceLogger performanceLogger;
+    private final MetricsHolder metricsHolder;
 
     @Autowired
     public MessagesLoader(
             WebClient webClient,
-            PerformanceLogger performanceLogger ) {
+            MetricsHolder metricsHolder ) {
         this.webClient = webClient;
-        this.performanceLogger = performanceLogger;
+        this.metricsHolder = metricsHolder;
     }
 
     public void run( int messagesPerSecond, String producerUrl ) {
@@ -32,7 +32,7 @@ public class MessagesLoader {
                         .retrieve().bodyToMono( String.class )
                         .subscribe( s -> {
                             log.debug( "response: {}", s );
-                            performanceLogger.onMessage();
+                            metricsHolder.onMessage();
                         } );
             }
             long finishTime = System.currentTimeMillis();

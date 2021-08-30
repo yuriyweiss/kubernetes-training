@@ -65,6 +65,20 @@ http://localhost:5601/
 > kubectl create -f fluentd-configmap.yaml
 > kubectl create -f fluentd-daemonset.yaml
 
+-- запуск Prometheus
+
+> cd ~/work/apps/prometheus-2.29.2
+> ./prometheus.exe --config.file=prometheus.yml
+
+http://localhost:9090
+
+-- Graphana
+
+> cd ~/work/apps/grafana-8.1.2/bin
+> ./grafana-server.exe
+
+http://localhost:3000
+admin / admin
 
 
 -- мой репозиторий для тренировки на Docker Hub
@@ -89,8 +103,8 @@ yuriyweiss/spring-docker-consumer
 > kubectl port-forward service/spring-docker-producer 7080:8080
 
 -- LoadBalancer
-> kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8080
--- открыть туннель для запросов http://localhost:8080/hello/ngjnfjd
+> kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8086
+-- открыть туннель для запросов http://localhost:8086/hello/ngjnfjd
 > minikube tunnel
 -- получить IP
 > kubectl get services spring-docker-producer
@@ -102,15 +116,9 @@ yuriyweiss/spring-docker-consumer
 -- директория проекта
 C:\Users\yuriy\work\personal-projects\kubernetes-training\spring-cloud-config-server
 
--- запуск из Idea
-1. Открыть проект в Idea;
-2. В run-конфигурации прописать параметр -Dspring.profiles.active=native
-3. Остановка через красный квадрат в консоли управления.
-
 -- запуск из GitBash
 > cd ~/work/personal-projects/kubernetes-training/spring-cloud-config-server/target
-
-> java -Dspring.profiles.active=native -jar spring-cloud-config-server-0.0.8-SNAPSHOT.jar
+> java -Dspring.profiles.active=native -jar spring-cloud-config-server-0.0.11-SNAPSHOT.jar
 
 -- проверка загрузки конфигурации
 http://192.168.0.102:8888/spring-docker-producer/dev

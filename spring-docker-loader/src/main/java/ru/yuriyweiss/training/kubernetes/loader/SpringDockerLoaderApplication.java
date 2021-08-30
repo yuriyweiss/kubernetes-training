@@ -6,12 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.netty.http.client.HttpClient;
+import reactor.netty.resources.ConnectionProvider;
 
 @Slf4j
 @SpringBootApplication( scanBasePackages = { "ru.yuriyweiss.training.kubernetes" } )
-@EnableScheduling
 public class SpringDockerLoaderApplication {
 
     @Autowired
@@ -36,6 +37,15 @@ public class SpringDockerLoaderApplication {
 
     @Bean
     public WebClient webClient() {
-        return WebClient.create();
+        ConnectionProvider connectionProvider = ConnectionProvider.builder( "loaderConnectionPool" )
+                .maxConnections( 1000 )
+                .pendingAcquireMaxCount( 10000 )
+                .metrics( true )
+                .build();
+        ReactorClientHttpConnector clientHttpConnector =
+                new ReactorClientHttpConnector( HttpClient.create( connectionProvider ) );
+        return WebClient.builder()
+                .clientConnector(clientHttpConnector)
+                .build();
     }
 }

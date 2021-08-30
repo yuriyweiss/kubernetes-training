@@ -19,7 +19,7 @@
 ## 3. Собрать образы и отправить на DockerHub
 
 - cd ~/work/personal-projects/kubernetes-training/bin
-- ./buildImages.sh 0.0.10
+- ./buildImages.sh 0.0.11
 
 ## 4. Запустить minikube
 
@@ -31,9 +31,10 @@
 ## 5. Установка в minikube
 
 - cd ~/work/personal-projects/kubernetes-training/bin
-- ./deployImages.sh 0.0.10
+- ./deployImages.sh 0.0.11
 - подождать запуск нод
-- kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8080
+- kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8086
+- kubectl expose deployment spring-docker-consumer --type=LoadBalancer --port=8087
 - в отдельном командном окне
   - minikube tunnel
 
@@ -41,4 +42,4 @@
 
 - на машине 192.168.0.102
 - cd ~/work/personal-projects/kubernetes-training/spring-docker-loader/target
-- java -jar spring-docker-loader-0.0.10-SNAPSHOT.jar 100 http://localhost:8080/hello/
+- java -jar spring-docker-loader-0.0.11-SNAPSHOT.jar 10 http://localhost:8086/hello/
