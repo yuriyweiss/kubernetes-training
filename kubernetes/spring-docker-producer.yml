@@ -20,7 +20,7 @@ spec:
             - name: TZ
               value: Europe/Moscow
           ports:
-            - containerPort: 8080
+            - containerPort: 8086
           resources:
             requests:
               memory: "250Mi"

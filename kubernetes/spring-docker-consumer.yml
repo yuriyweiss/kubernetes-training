@@ -19,6 +19,8 @@ spec:
           env:
             - name: TZ
               value: Europe/Moscow
+          ports:
+            - containerPort: 8087
           resources:
             requests:
               memory: "200Mi"

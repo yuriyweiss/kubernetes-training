@@ -11,9 +11,13 @@ cat spring-docker-producer.yml | sed "s/{{CURRENT_VERSION}}/$CURRENT_VERSION/g" 
 echo -e '\n\n'
 
 echo Expose producer service
-kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8080
+kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8086
 echo -e '\n\n'
 
 echo Deploy consumer to minikube
 cat spring-docker-consumer.yml | sed "s/{{CURRENT_VERSION}}/$CURRENT_VERSION/g" | kubectl apply -f -
+echo -e '\n\n'
+
+echo Expose consumer service
+kubectl expose deployment spring-docker-consumer --type=LoadBalancer --port=8087
 echo -e '\n\n'

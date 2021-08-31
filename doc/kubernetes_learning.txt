@@ -60,17 +60,31 @@ http://localhost:5601/
 
 -- установить fluentd в minikube
 
+> cd ~/work/personal-projects/kubernetes-training/kubernetes/fluentd
+
 > kubectl create -f logging-namespace.yaml
 > kubectl create -f fluentd-service-account.yaml
 > kubectl create -f fluentd-configmap.yaml
 > kubectl create -f fluentd-daemonset.yaml
 
+
+
 -- запуск Prometheus
 
 > cd ~/work/apps/prometheus-2.29.2
-> ./prometheus.exe --config.file=prometheus.yml
+> ./prometheus.exe --config.file=prometheus.yml --web.listen-address=:9095
 
-http://localhost:9090
+http://localhost:9095
+
+-- установка Prometheus в minikube
+
+> cd ~/work/personal-projects/kubernetes-training/kubernetes/prometheus
+
+> kubectl create -f prometheus-rbac.yml
+> kubectl create configmap prometheus-config --from-file prometheus.yml
+> kubectl create -f prometheus-deployment.yml
+> kubectl expose deployment prometheus --type=LoadBalancer --port=9090
+
 
 -- Graphana
 

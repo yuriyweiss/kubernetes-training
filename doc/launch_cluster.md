@@ -33,8 +33,6 @@
 - cd ~/work/personal-projects/kubernetes-training/bin
 - ./deployImages.sh 0.0.11
 - подождать запуск нод
-- kubectl expose deployment spring-docker-producer --type=LoadBalancer --port=8086
-- kubectl expose deployment spring-docker-consumer --type=LoadBalancer --port=8087
 - в отдельном командном окне
   - minikube tunnel
 
