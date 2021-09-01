@@ -26,12 +26,7 @@ public class SpringDockerLoaderApplication {
     public CommandLineRunner commandLineRunner() {
         return args -> {
             log.info( "started" );
-            if ( args.length < 2 ) {
-                log.info( "Usage: <run messageLoader command> <messagesPerSecond> <producerUrl>" );
-                return;
-            }
-            // producerUrl: "http://localhost:8080/hello/"
-            messagesLoader.run( Integer.parseInt( args[0] ), args[1] );
+            messagesLoader.run();
         };
     }
 
@@ -39,13 +34,13 @@ public class SpringDockerLoaderApplication {
     public WebClient webClient() {
         ConnectionProvider connectionProvider = ConnectionProvider.builder( "loaderConnectionPool" )
                 .maxConnections( 1000 )
-                .pendingAcquireMaxCount( 10000 )
+                .pendingAcquireMaxCount( 2000 )
                 .metrics( true )
                 .build();
         ReactorClientHttpConnector clientHttpConnector =
                 new ReactorClientHttpConnector( HttpClient.create( connectionProvider ) );
         return WebClient.builder()
-                .clientConnector(clientHttpConnector)
+                .clientConnector( clientHttpConnector )
                 .build();
     }
 }

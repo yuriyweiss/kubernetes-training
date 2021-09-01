@@ -30,6 +30,6 @@ public class KafkaConsumer {
         String message = payload + " " + LocalDateTime.now().format( DateTimeFormatter.ISO_LOCAL_DATE_TIME ) +
                 " partition: " + partition + " offset: " + offset;
         log.trace( message );
-        metricsHolder.onMessage();
+        metricsHolder.onMessageConsumed( partition );
     }
 }

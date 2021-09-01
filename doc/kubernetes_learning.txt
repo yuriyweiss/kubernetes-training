@@ -132,7 +132,7 @@ C:\Users\yuriy\work\personal-projects\kubernetes-training\spring-cloud-config-se
 
 -- запуск из GitBash
 > cd ~/work/personal-projects/kubernetes-training/spring-cloud-config-server/target
-> java -Dspring.profiles.active=native -jar spring-cloud-config-server-0.0.11-SNAPSHOT.jar
+> java -Dspring.profiles.active=native -jar spring-cloud-config-server-0.0.12-SNAPSHOT.jar
 
 -- проверка загрузки конфигурации
 http://192.168.0.102:8888/spring-docker-producer/dev

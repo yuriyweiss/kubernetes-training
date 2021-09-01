@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-docker-loader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-docker-loader
+  template:
+    metadata:
+      labels:
+        app: spring-docker-loader
+    spec:
+      containers:
+        - name: spring-docker-loader
+          image: yuriyweiss/spring-docker-loader:{{CURRENT_VERSION}}
+          imagePullPolicy: Always
+          env:
+            - name: TZ
+              value: Europe/Moscow
+          ports:
+            - containerPort: 8085
+          resources:
+            requests:
+              memory: "200Mi"
+            limits:
+              memory: "400Mi"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 0

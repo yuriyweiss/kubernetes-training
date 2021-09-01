@@ -11,7 +11,7 @@
 
 ## 2. Запуск всех приложений, необходимых для работы minikube
 
-- на машине 192.168.0.101 запустить elastic и kibana
+- !!! не требуется - на машине 192.168.0.101 запустить elastic и kibana
 - cd ~/work/personal-projects/kubernetes-training/bin
 - ./startApplications_102.bat
 - запустить Docker Desktop
@@ -19,7 +19,7 @@
 ## 3. Собрать образы и отправить на DockerHub
 
 - cd ~/work/personal-projects/kubernetes-training/bin
-- ./buildImages.sh 0.0.11
+- ./buildImages.sh 0.0.12
 
 ## 4. Запустить minikube
 
@@ -31,7 +31,7 @@
 ## 5. Установка в minikube
 
 - cd ~/work/personal-projects/kubernetes-training/bin
-- ./deployImages.sh 0.0.11
+- ./deployImages.sh 0.0.12
 - подождать запуск нод
 - в отдельном командном окне
   - minikube tunnel

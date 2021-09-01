@@ -2,6 +2,7 @@ package ru.yuriyweiss.training.kubernetes.loader;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import ru.yuriyweiss.training.kubernetes.common.MetricsHolder;
@@ -15,6 +16,11 @@ public class MessagesLoader {
     private final WebClient webClient;
     private final MetricsHolder metricsHolder;
 
+    @Value( "${messages.loader.generate.rate}" )
+    private int messagesPerSecond;
+    @Value( "${messages.loader.producer.url}" )
+    private String producerUrl;
+
     @Autowired
     public MessagesLoader(
             WebClient webClient,
@@ -23,7 +29,7 @@ public class MessagesLoader {
         this.metricsHolder = metricsHolder;
     }
 
-    public void run( int messagesPerSecond, String producerUrl ) {
+    public void run() {
         while ( true ) { // NOSONAR
             long startTime = System.currentTimeMillis();
             for ( int i = 0; i < messagesPerSecond; i++ ) {
