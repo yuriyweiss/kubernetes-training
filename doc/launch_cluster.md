@@ -11,6 +11,8 @@
 
 ## 2. Запуск всех приложений, необходимых для работы minikube
 
+И Кафка и приложения producer + consumer запускаются в единственном числе на локальной машине и спокойно обрабатывают весь поток сообщений.
+
 - !!! не требуется - на машине 192.168.0.101 запустить elastic и kibana
 - cd ~/work/personal-projects/kubernetes-training/bin
 - ./startApplications_102.bat
@@ -32,12 +34,12 @@
 
 - cd ~/work/personal-projects/kubernetes-training/bin
 - ./deployImages.sh 0.0.12
-- подождать запуск нод
+- подождать запуск под
 - в отдельном командном окне
   - minikube tunnel
 
 ## 6. Запуск нагрузки
 
-- на машине 192.168.0.102
-- cd ~/work/personal-projects/kubernetes-training/spring-docker-loader/target
-- java -jar spring-docker-loader-0.0.11-SNAPSHOT.jar 10 http://localhost:8086/hello/
+При настройках WebFlux в 1000 коннекций не удаётся достичь нагрузки 1000 сообщений в секунду.
+
+Поэтому именно приложение loader было отправлено в Kubernetes. Настройка количества сообщений в секунду помещена в SpringCloudServer. А увеличение/уменьшение нагрузки происходит за счёт увеличения/уменьшения количества под.

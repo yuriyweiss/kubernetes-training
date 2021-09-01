@@ -6,17 +6,15 @@ start "Zookeeper" bin\windows\zookeeper-server-start.bat config\zookeeper.proper
 pause
 start "Kafka" bin\windows\kafka-server-start.bat config\server.properties
 pause
-cd C:\Users\yuriy\work\personal-projects\kubernetes-training\spring-cloud-config-server\target
-start "SpringCloudConfig" java -Dspring.profiles.active=native -jar spring-cloud-config-server-0.0.12-SNAPSHOT.jar
+cd C:\Users\yuriy\work\personal-projects\kubernetes-training\bin
+start "SpringCloudConfig" startConfigServer.bat 0.0.12
+pause
+start "SpringDockerProducer" startProducer.bat 0.0.12
+pause
+start "SpringDockerConsumer" startConsumer.bat 0.0.12
 pause
 cd C:\Users\yuriy\work\apps\grafana-8.1.2\bin
 start "Graphana" grafana-server.exe
 pause
 cd C:\Users\yuriy\work\apps\prometheus-2.29.2
 start "Prometheus" prometheus.exe --config.file=prometheus.yml --web.listen-address=:9095
-pause
-cd C:\Users\yuriy\work\personal-projects\kubernetes-training\spring-docker-producer\target
-start "SpringDockerProducer" java -Dspring.profiles.active=dev -jar spring-docker-producer-0.0.12-SNAPSHOT.jar
-pause
-cd C:\Users\yuriy\work\personal-projects\kubernetes-training\spring-docker-consumer\target
-start "SpringDockerConsumer" java -Dspring.profiles.active=dev -jar spring-docker-consumer-0.0.12-SNAPSHOT.jar
